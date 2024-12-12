@@ -1,0 +1,62 @@
+#include <iostream>
+using namespace std;
+template <class T>
+void sort()
+{
+    int i, j,min,n;
+    T temp;
+    T a[10];
+    cout<<"\n Enter number of element you want to sort: ";
+    cin>>n;
+    for(i=0;i<n;i++)
+{
+    cin>>a[i];
+}
+for(i=0;i<n;i++)
+{
+    min=i;
+    for(j=i+1;j<n;j++)
+{
+    if(a[j]<a[min])
+{
+    min=j;
+}
+}
+if(min!=i)
+{
+    temp=a[i];
+    a[i]=a[min];
+    a[min]=temp;
+}
+}
+cout<<"\n The array in the sorted order is : "<<endl;
+for(i=0;i<n;i++)
+{
+    cout<<"\t"<<a[i];
+}
+}
+int main()
+{
+    int choice;
+    char ans;
+    do
+{
+    cout<<"\n 1. Integer sort. \n 2. Float sort.";
+    cout<<"\n Enter the input you want to sort : ";
+    cin>>choice;
+    switch(choice)
+{
+    case 1 : sort<int>();
+    break;
+    case 2 : sort<float>();
+    break;
+    case 3 : cout<<"\n Invalid choice.";
+    break;
+}
+cout<<"\n Do u wish to continue (Y/N)?";
+cin>>ans;
+}
+while(ans=='Y' || ans=='y');
+return 0;
+}
+

@@ -1,0 +1,104 @@
+#include <iostream>
+// #include <stdio.h>
+// #include <stdlib.h>
+using namespace std;
+class complex
+{
+    float x;
+    float y;
+
+public:
+    complex operator+(complex);
+    complex operator-(complex);
+    complex operator*(complex);
+    complex operator/(complex);
+    complex()
+    {
+        x = 0;
+        y = 0;
+    }
+    complex(float a, float b)
+    {
+        x = a;
+        y = b;
+    }
+    friend void operator<<(ostream &out, complex &d)
+    {
+        cout << "\n"
+             << d.x << "+" << d.y << "i";
+    }
+    friend istream &operator>>(istream &input, complex &num)
+    {
+        input >> num.x >> num.y;
+        return input;
+    }
+};
+complex complex::operator+(complex c)
+{
+    complex temp;
+    temp.x = x + c.x;
+    temp.y = y + c.y;
+    return (temp);
+}
+complex complex::operator*(complex c)
+{
+    complex temp2;
+    temp2.x = (x * c.x) - (y * c.y);
+    temp2.y = (y * c.x) + (x * c.y);
+    return (temp2);
+}
+int main()
+{
+    complex c1, c2, c3, c4;
+    int ch;
+    do
+    {
+        cout << "\n=========================";
+        cout << "\n 1.Create constructor";
+        cout << "\n 2.Accept data";
+        cout << "\n 3.Display number";
+        cout << "\n 4.Add Number";
+        cout << "\n 5.Multiplication";
+        cout << "\n 6.Exit";
+        cout << "\n Enter your choice :";
+        cin >> ch;
+        cout << "\n=========================";
+        switch (ch)
+        {
+        case 1:
+            cout << "\n Complex number after initialization";
+            cout << c1;
+            cout << c2;
+            break;
+        case 2:
+            cout << "\nEnter first complex number:";
+            cin >> c1;
+            cout << "\nEnter second complex number:";
+            cin >> c2;
+            break;
+        case 3:
+            cout << "\n First complex number:";
+            cout << c1;
+            cout << "\n Second complex number:";
+            cout << c2;
+            break;
+        case 4:
+            c3 = c1 + c2;
+            cout << "\n addition is ";
+            cout << c3;
+            break;
+        case 5:
+            c4 = c1 * c2;
+            cout << "\n multiplication is ";
+            cout << c4;
+            break;
+        default:
+            if (ch != 6)
+            {
+                cout << "\n Wrong choice.....";
+                break;
+            }
+        }
+    } while (ch != 6);
+    return 0;
+}
